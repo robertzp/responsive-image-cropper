@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Responsive Image Crop Demo</title>
+    <meta charset="UTF-8" />
+    <link href="../src/responsive-cropper.css" rel="stylesheet" />
+    <script src="../vendor/jquery/dist/jquery.js"></script>
+    <script src="../src/responsive-cropper.js"></script>
+  </head>
+  <body>
+    <section>
+      <img id="crop-landscape" src="https://media2.grabone.co.nz/asset/NqCTRFJKDJ" alt="" />
+    </section>
+
+    <section>
+      <img id="crop-portrait" src="https://media2.grabone.co.nz/asset/FYjjrYsYpW" alt="" />
+    </section>
+
+    <script>
+      var
+        cropLandscape = new ResponsiveCropper('#crop-landscape'),
+        cropPortrait  = new ResponsiveCropper('#crop-portrait', {
+          minWidth:  50,
+          minHeight: 50,
+          constrainRatio: 'detect'
+        });
+    </script>
+  </body>
+</html>

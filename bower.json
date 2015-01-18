@@ -1,0 +1,17 @@
+{
+  "name": "responsive-image-cropper",
+  "description": "A basic responsive image cropper - provides decimal dimensions to pass to a backend system",
+  "authors": [
+    "Raice Hannay (http://github.com/voodoocreation)"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/voodoocreation/responsive-image-cropper"
+  },
+  "version": "1.0.0",
+  "license": "GPL-2.0+",
+  "main": [],
+  "dependencies": {
+    "jquery": "~2.1.3"
+  }
+}

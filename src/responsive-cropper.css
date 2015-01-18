@@ -1,0 +1,42 @@
+.gomedia-crop-image img {
+    max-width: 100%;
+    cursor: crosshair;
+}
+
+.gomedia-crop-selector { cursor: move; }
+
+.gomedia-crop-handle {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background: #000;
+    opacity: 0.50;
+}
+
+.gomedia-crop-handle-nw {
+    top: -8px;
+    left: -8px;
+    cursor: nw-resize;
+}
+
+.gomedia-crop-handle-ne {
+    top: -8px;
+    right: -8px;
+    cursor: ne-resize;
+}
+
+.gomedia-crop-handle-se {
+    bottom: -8px;
+    right: -8px;
+    cursor: se-resize;
+}
+
+.gomedia-crop-handle-sw {
+    bottom: -8px;
+    left: -8px;
+    cursor: sw-resize;
+}
+
+.gomedia-crop-container.gomedia-crop-has-selection .gomedia-crop-image { opacity: 0.30; }
+
+.gomedia-crop-container.gomedia-crop-resizing .gomedia-crop-selector { cursor: crosshair; }
