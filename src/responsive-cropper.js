@@ -22,10 +22,14 @@ function ResponsiveCropper (element, options) {
     isResizing       = false,
     hasSelection     = false,
     currentSelection = {
-      x:      0,
-      y:      0,
-      width:  0,
-      height: 0
+      x:           0,
+      y:           0,
+      width:       0,
+      height:      0,
+      pixelX:      0,
+      pixelY:      0,
+      pixelWidth:  0,
+      pixelHeight: 0
     };
 
   this.options = {
@@ -951,8 +955,10 @@ function ResponsiveCropper (element, options) {
    */
   this.updateSelector = function (top, left, width, height) {
     var
-      imageWidth  = $imageElement.width(),
-      imageHeight = $imageElement.height();
+      imageWidth         = $imageElement.width(),
+      imageHeight        = $imageElement.height(),
+      imageNaturalWidth  = $imageElement[0].naturalWidth,
+      imageNaturalHeight = $imageElement[0].naturalHeight;
 
     if (width === undefined) {
       // Width not passed - get current width
@@ -992,6 +998,11 @@ function ResponsiveCropper (element, options) {
       width:  (width / imageWidth),
       height: (height / imageHeight)
     };
+
+    currentSelection.pixelX      = Math.floor(currentSelection.x * imageNaturalWidth);
+    currentSelection.pixelY      = Math.floor(currentSelection.y * imageNaturalHeight);
+    currentSelection.pixelWidth  = Math.floor(currentSelection.width * imageNaturalWidth);
+    currentSelection.pixelHeight = Math.floor(currentSelection.height * imageNaturalHeight);
   };
 
   /**
@@ -1002,10 +1013,14 @@ function ResponsiveCropper (element, options) {
     setInitialCSS();
 
     currentSelection = {
-      x:      0,
-      y:      0,
-      width:  0,
-      height: 0
+      x:           0,
+      y:           0,
+      width:       0,
+      height:      0,
+      pixelX:      0,
+      pixelY:      0,
+      pixelWidth:  0,
+      pixelHeight: 0
     };
   };
 
