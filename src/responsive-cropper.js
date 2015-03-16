@@ -32,11 +32,17 @@ function ResponsiveCropper (element, options) {
       pixelHeight: 0
     };
 
+  this.errors = {
+      1: 'The image is too small for minimum crop'
+  },
+  this.errno = null;
+
   this.options = {
     minWidth:       24,
     minHeight:      24,
     constrainRatio: undefined
   };
+
 
   // endregion Construct
 
@@ -932,11 +938,26 @@ function ResponsiveCropper (element, options) {
     $.extend(self.options, options);
 
     $imageElement = $(element);
+
+    imageNaturalWidth  = $imageElement[0].naturalWidth;
+    imageNaturalHeight = $imageElement[0].naturalHeight;
+
+    if(options.minWidth > imageNaturalWidth || options.minHeight > imageNaturalHeight){
+        $imageElement.addClass('gomedia-crop-disabled');
+        self.errno = 1;
+        return false
+    }
+
     buildCropWidget();
     bindKeys();
     bindCropImage();
     bindSelector();
     bindWindowResize();
+
+    if(options.initial){
+        self.updateSelector(options.initial.y, options.initial.x, options.initial.width, options.initial.height);
+        handleCropImageMouseUp({pageX: options.initial.x, pageY: options.initial.y})
+    }
   }
 
   // endregion Base

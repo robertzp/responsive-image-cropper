@@ -37,6 +37,11 @@
     cursor: sw-resize;
 }
 
+.gomedia-crop-disabled {
+    opacity: 0.20;
+    cursor: not-allowed;
+}
+
 .gomedia-crop-container.gomedia-crop-has-selection .gomedia-crop-image { opacity: 0.30; }
 
 .gomedia-crop-container.gomedia-crop-resizing .gomedia-crop-selector { cursor: crosshair; }
