@@ -957,6 +957,59 @@ function ResponsiveCropper (element, options) {
     if(options.initial){
         self.updateSelector(options.initial.y, options.initial.x, options.initial.width, options.initial.height);
         handleCropImageMouseUp({pageX: options.initial.x, pageY: options.initial.y})
+    }else{
+        //draw default
+        var new_portraitMode = !(options.minWidth >= options.minHeight)
+        var src_portraitMode = !(imageNaturalWidth >= imageNaturalHeight)
+
+        var r_w = options.minWidth/options.minHeight
+        var r_h = options.minHeight/options.minWidth
+
+        if(new_portraitMode && !src_portraitMode){
+            //landscape img into portrait slot
+            var h = imageNaturalHeight
+            var w = imageNaturalHeight / r_h
+            var y = 0
+            var x = (imageNaturalWidth - w) / 2
+        }
+        if(!new_portraitMode && src_portraitMode){
+            //portrait img into landscape slot
+            var h = imageNaturalWidth / r_w
+            var w = imageNaturalWidth
+            var y = (imageNaturalHeight - h) / 2
+            var x = 0
+        }
+        if(!new_portraitMode && !src_portraitMode){
+            //landscape img into landscape slot
+            var h = imageNaturalWidth / r_w
+            var w = imageNaturalWidth
+            var y = (imageNaturalHeight - h) / 2
+            var x = 0
+
+            if(h > imageNaturalHeight){
+              h = imageNaturalHeight
+              w = imageNaturalHeight / r_h
+                y = 0
+                x = (imageNaturalWidth - w) /2
+            }
+        }
+        if(new_portraitMode && src_portraitMode){
+            //landscape img into landscape slot
+            var h = imageNaturalWidth / r_w
+            var w = imageNaturalWidth
+            var y = (imageNaturalHeight - h) / 2
+            var x = 0
+
+            if(h > imageNaturalHeight){
+              h = imageNaturalHeight
+              w = imageNaturalHeight / r_h
+                y = 0
+                x = (imageNaturalWidth - w) /2
+            }
+        }
+        
+        self.updateSelector(y, x, w, h);
+        handleCropImageMouseUp({pageX: x, pageY: y})    
     }
   }
 
